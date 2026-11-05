@@ -64,35 +64,37 @@ export default function AlphabetScreen() {
               </View>
             </View>
 
-            {/* Hint Button or Revealed Example Picture & Word */}
-            <View className="mt-4 w-full">
-              {!isHintVisible ? (
-                <JuicyButton
-                  onPress={() => setRevealedHintId(challenge.id)}
-                  accessibilityLabel="Pokaż podpowiedź z obrazkiem"
-                  className="w-full bg-[#2B1454] border-2 border-[#FACC15] rounded-2xl py-3.5 px-4 flex-row items-center justify-center gap-3"
-                >
-                  <Text style={{ fontSize: 28, lineHeight: 34 }}>💡</Text>
-                  <Text className="text-[#FACC15] text-xl font-black">
-                    Podpowiedź
-                  </Text>
-                </JuicyButton>
-              ) : (
-                <View className="w-full bg-[#140929] border-2 border-[#00F0FF] rounded-2xl py-2.5 px-4 flex-row items-center justify-center gap-4">
-                  <Image
-                    source={challenge.image}
-                    style={{ width: 68, height: 68 }}
-                    resizeMode="contain"
-                  />
-                  <Text
-                    style={{ fontSize: 26, lineHeight: 34 }}
-                    className="text-[#00F0FF] font-black"
+            {/* Hint Button or Revealed Example Picture & Word (Practice Mode only) */}
+            {playMode === "practice" && (
+              <View className="mt-4 w-full">
+                {!isHintVisible ? (
+                  <JuicyButton
+                    onPress={() => setRevealedHintId(challenge.id)}
+                    accessibilityLabel="Pokaż podpowiedź z obrazkiem"
+                    className="w-full bg-[#2B1454] border-2 border-[#FACC15] rounded-2xl py-3.5 px-4 flex-row items-center justify-center gap-3"
                   >
-                    {challenge.exampleWord}
-                  </Text>
-                </View>
-              )}
-            </View>
+                    <Text style={{ fontSize: 28, lineHeight: 34 }}>💡</Text>
+                    <Text className="text-[#FACC15] text-xl font-black">
+                      Podpowiedź
+                    </Text>
+                  </JuicyButton>
+                ) : (
+                  <View className="w-full bg-[#140929] border-2 border-[#00F0FF] rounded-2xl py-2.5 px-4 flex-row items-center justify-center gap-4">
+                    <Image
+                      source={challenge.image}
+                      style={{ width: 68, height: 68 }}
+                      resizeMode="contain"
+                    />
+                    <Text
+                      style={{ fontSize: 26, lineHeight: 34 }}
+                      className="text-[#00F0FF] font-black"
+                    >
+                      {challenge.exampleWord}
+                    </Text>
+                  </View>
+                )}
+              </View>
+            )}
           </View>
         );
       }}
