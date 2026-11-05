@@ -505,21 +505,39 @@ function RumiGame() {
             </Text>
 
             {/* Side-by-side Uppercase (left) & Lowercase (right) */}
-            <View className="flex-row items-baseline justify-center w-full gap-6 py-3">
-              <View className="flex-1 items-center bg-[#140929] border-2 border-[#00F0FF]/70 rounded-3xl py-6">
-                <Text className="text-[#00F0FF]/80 text-xs font-bold mb-1">
+            <View className="flex-row items-stretch justify-center w-full gap-5 py-2">
+              <View className="flex-1 items-center justify-center bg-[#140929] border-2 border-[#00F0FF]/70 rounded-3xl py-5 px-2">
+                <Text className="text-[#00F0FF]/80 text-xs font-bold mb-2">
                   DUŻA
                 </Text>
-                <Text className="text-white text-8xl font-black">
+                <Text
+                  style={{
+                    width: "100%",
+                    textAlign: "center",
+                    fontSize: 80,
+                    lineHeight: 114,
+                    includeFontPadding: true,
+                  }}
+                  className="text-white font-black"
+                >
                   {currentChallenge.upper}
                 </Text>
               </View>
 
-              <View className="flex-1 items-center bg-[#140929] border-2 border-[#FF2A85]/70 rounded-3xl py-6">
-                <Text className="text-[#FF2A85]/90 text-xs font-bold mb-1">
+              <View className="flex-1 items-center justify-center bg-[#140929] border-2 border-[#FF2A85]/70 rounded-3xl py-5 px-2">
+                <Text className="text-[#FF2A85]/90 text-xs font-bold mb-2">
                   MAŁA
                 </Text>
-                <Text className="text-[#F0ABFC] text-8xl font-black">
+                <Text
+                  style={{
+                    width: "100%",
+                    textAlign: "center",
+                    fontSize: 80,
+                    lineHeight: 114,
+                    includeFontPadding: true,
+                  }}
+                  className="text-[#F0ABFC] font-black"
+                >
                   {currentChallenge.lower}
                 </Text>
               </View>
@@ -539,17 +557,31 @@ function RumiGame() {
 
             {/* Reveal English Color Name after Pronunciation Check */}
             {pronunciationChecked ? (
-              <View className="items-center mt-1 w-full px-4">
-                <Text className="text-[#00F0FF] text-3xl font-black text-center px-2">
+              <View className="items-center mt-1 w-full">
+                <Text
+                  style={{
+                    width: "100%",
+                    textAlign: "center",
+                    fontSize: 32,
+                    lineHeight: 42,
+                  }}
+                  className="text-[#00F0FF] font-black"
+                >
                   {currentChallenge.nameEn}
                 </Text>
-                <Text className="text-purple-300 text-sm font-semibold text-center">
+                <Text
+                  style={{ width: "100%", textAlign: "center" }}
+                  className="text-purple-300 text-base font-semibold mt-0.5"
+                >
                   ({currentChallenge.namePl})
                 </Text>
               </View>
             ) : (
-              <View className="items-center mt-1">
-                <Text className="text-purple-300 text-lg font-bold">
+              <View className="items-center mt-1 w-full">
+                <Text
+                  style={{ width: "100%", textAlign: "center" }}
+                  className="text-purple-300 text-lg font-bold"
+                >
                   ❓ Nazwij kolor i kliknij głośniczek
                 </Text>
               </View>
