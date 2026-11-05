@@ -1,8 +1,7 @@
-import * as Haptics from "expo-haptics";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import React, { useEffect, useState } from "react";
-import { FlatList, Image, Platform, Text, View } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import { FlatList, Image, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { JuicyButton } from "@/components/juicy-button";
 import {
@@ -25,24 +24,37 @@ const TOPIC_TITLES: Record<Topic, string> = {
 export function CatalogShell({ topic }: CatalogShellProps) {
   const items = getPoolForTopic(topic);
   const [activeId, setActiveId] = useState<string | null>(null);
+  const clearTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     return () => {
+      if (clearTimerRef.current) {
+        clearTimeout(clearTimerRef.current);
+      }
       stopSpeech();
     };
   }, []);
 
   const returnToMenu = () => {
+    if (clearTimerRef.current) {
+      clearTimeout(clearTimerRef.current);
+    }
     stopSpeech();
     router.replace("/");
   };
 
   const handleSelectItem = (item: Challenge) => {
-    setActiveId(item.id);
-    if (Platform.OS !== "web") {
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
+    if (clearTimerRef.current) {
+      clearTimeout(clearTimerRef.current);
     }
-    speakChallenge(item);
+    setActiveId(item.id);
+
+    const clearHighlight = () => {
+      setActiveId((prev) => (prev === item.id ? null : prev));
+    };
+
+    speakChallenge(item, clearHighlight);
+    clearTimerRef.current = setTimeout(clearHighlight, 900);
   };
 
   return (

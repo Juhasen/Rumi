@@ -86,7 +86,11 @@ async function ensureAudioConfigured(): Promise<void> {
   }
 }
 
-function playBundledAudio(source: AudioSource, onFallback?: () => void): void {
+function playBundledAudio(
+  source: AudioSource,
+  onFallback?: () => void,
+  onDone?: () => void
+): void {
   try {
     if (activePlayer) {
       activePlayer.pause();
@@ -95,13 +99,23 @@ function playBundledAudio(source: AudioSource, onFallback?: () => void): void {
     }
     const player = createAudioPlayer(source);
     activePlayer = player;
+    if (onDone) {
+      player.addListener("playbackStatusUpdate", (status) => {
+        if (status.didJustFinish) {
+          onDone();
+        }
+      });
+    }
     player.play();
   } catch {
     onFallback?.();
   }
 }
 
-export async function speakChallenge(challenge: Challenge): Promise<void> {
+export async function speakChallenge(
+  challenge: Challenge,
+  onDone?: () => void
+): Promise<void> {
   try {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   } catch {
@@ -113,18 +127,24 @@ export async function speakChallenge(challenge: Challenge): Promise<void> {
 
   const source = CHALLENGE_AUDIO_MAP[challenge.id];
   if (source) {
-    playBundledAudio(source, () => {
-      Speech.speak(challenge.spoken, {
-        language: ROUND_RULES[challenge.kind].language,
-        rate: 0.85,
-      });
-    });
+    playBundledAudio(
+      source,
+      () => {
+        Speech.speak(challenge.spoken, {
+          language: ROUND_RULES[challenge.kind].language,
+          rate: 0.85,
+          onDone,
+        });
+      },
+      onDone
+    );
     return;
   }
 
   Speech.speak(challenge.spoken, {
     language: ROUND_RULES[challenge.kind].language,
     rate: 0.85,
+    onDone,
   });
 }
 
