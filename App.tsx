@@ -539,11 +539,11 @@ function RumiGame() {
 
             {/* Reveal English Color Name after Pronunciation Check */}
             {pronunciationChecked ? (
-              <View className="items-center mt-1">
-                <Text className="text-[#00F0FF] text-3xl font-black tracking-wider">
+              <View className="items-center mt-1 w-full px-4">
+                <Text className="text-[#00F0FF] text-3xl font-black text-center px-2">
                   {currentChallenge.nameEn}
                 </Text>
-                <Text className="text-purple-300 text-sm font-semibold">
+                <Text className="text-purple-300 text-sm font-semibold text-center">
                   ({currentChallenge.namePl})
                 </Text>
               </View>

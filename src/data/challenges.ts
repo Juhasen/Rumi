@@ -24,8 +24,9 @@ export const ROUND_RULES: Record<
   Topic,
   { roundLength: number; winThreshold: number; language: string }
 > = {
-  alphabet: { roundLength: 10, winThreshold: 8, language: "pl-PL" },
-  colors: { roundLength: 5, winThreshold: 4, language: "en-US" },
+  // shortcut: use ISO-639 "pl"/"en" without region hyphen because expo-speech Android uses Locale.Builder().setLanguage() which throws IllformedLocaleException on "pl-PL"
+  alphabet: { roundLength: 10, winThreshold: 8, language: "pl" },
+  colors: { roundLength: 5, winThreshold: 4, language: "en" },
 };
 
 export const ALPHABET_CHALLENGES: AlphabetChallenge[] = [
