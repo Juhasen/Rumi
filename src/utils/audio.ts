@@ -12,7 +12,7 @@ const CHALLENGE_AUDIO_MAP: Record<string, AudioSource> = {
   c_acute: require("../../assets/audio/pl_v2/c_acute.wav"),
   d: require("../../assets/audio/pl_v2/d.wav"),
   e: require("../../assets/audio/pl_v2/e.wav"),
-  e_ogonek: require("../../assets/audio/pl_v2/e_ogonek.wav"),
+  e_ogonek: require("../../assets/audio/pl_v2/e_ogonek_v2.wav"),
   f: require("../../assets/audio/pl_v2/f.wav"),
   g: require("../../assets/audio/pl_v2/g.wav"),
   h: require("../../assets/audio/pl_v2/h.wav"),
