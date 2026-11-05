@@ -600,86 +600,85 @@ function RumiGame() {
         ) : null}
       </Animated.View>
 
-      {/* Speaker Button (Pronunciation Check) */}
-      <Animated.View style={speakerAnimatedStyle}>
-        <JuicyButton
-          onPress={handlePronunciationCheck}
-          accessibilityLabel="Posłuchaj prawidłowej wymowy"
-          className={`py-4 px-6 rounded-3xl border-4 flex-row items-center justify-center gap-3 ${
-            pronunciationChecked
-              ? "bg-[#1C2559] border-[#00F0FF]"
-              : "bg-[#7E22CE] border-[#00F0FF]"
-          }`}
-        >
-          <Text className="text-4xl">🔊</Text>
-          <View>
-            <Text className="text-white text-xl font-black">
-              {pronunciationChecked ? "Posłuchaj jeszcze raz" : "Sprawdź wymowę"}
-            </Text>
-            <Text className="text-cyan-200 text-xs font-semibold">
-              {pronunciationChecked
-                ? "Teraz oceń odpowiedź poniżej!"
-                : "Kliknij głośniczek po odpowiedzi"}
-            </Text>
-          </View>
-        </JuicyButton>
-      </Animated.View>
-
-      {/* Self-Score (+ / -) or Practice Next */}
-      <View className="mt-2">
-        {!pronunciationChecked && (
-          <Text className="text-center text-amber-300 text-xs font-bold mb-2">
-            🔒 Najpierw kliknij głośniczek, aby odblokować przyciski
-          </Text>
-        )}
-
-        {playMode === "scored" ? (
-          <View className="flex-row gap-4">
-            {/* Minus Button (Incorrect) */}
-            <View className="flex-1">
-              <JuicyButton
-                onPress={() => handleSelfScore(false)}
-                disabled={!pronunciationChecked || isTransitioning}
-                accessibilityLabel="Odpowiedź błędna, brak punktu"
-                className="bg-[#DC2626] border-4 border-red-300 py-5 rounded-3xl items-center justify-center"
-              >
-                <Text className="text-white text-5xl font-black leading-none">
-                  −
-                </Text>
-                <Text className="text-red-100 text-sm font-extrabold mt-1">
-                  Jeszcze nie
-                </Text>
-              </JuicyButton>
-            </View>
-
-            {/* Plus Button (Correct) */}
-            <View className="flex-1">
-              <JuicyButton
-                onPress={() => handleSelfScore(true)}
-                disabled={!pronunciationChecked || isTransitioning}
-                accessibilityLabel="Odpowiedź poprawna, dodaj punkt"
-                className="bg-[#16A34A] border-4 border-green-300 py-5 rounded-3xl items-center justify-center"
-              >
-                <Text className="text-white text-5xl font-black leading-none">
-                  +
-                </Text>
-                <Text className="text-green-100 text-sm font-extrabold mt-1">
-                  Dobrze!
-                </Text>
-              </JuicyButton>
-            </View>
-          </View>
+      {/* Bottom Action Area: Speaker first, then Self-Score (+ / -) or Next */}
+      <View className="mt-2 gap-3">
+        {!pronunciationChecked ? (
+          <Animated.View style={speakerAnimatedStyle}>
+            <JuicyButton
+              onPress={handlePronunciationCheck}
+              accessibilityLabel="Posłuchaj prawidłowej wymowy"
+              className="py-7 px-6 rounded-3xl border-4 bg-[#7E22CE] border-[#00F0FF] items-center justify-center"
+            >
+              <Text style={{ fontSize: 54, lineHeight: 64 }}>🔊</Text>
+              <Text className="text-white text-2xl font-black mt-1">
+                Sprawdź wymowę
+              </Text>
+            </JuicyButton>
+          </Animated.View>
         ) : (
-          <JuicyButton
-            onPress={handlePracticeNext}
-            disabled={!pronunciationChecked || isTransitioning}
-            accessibilityLabel="Następna karta"
-            className="bg-[#0284C7] border-4 border-[#00F0FF] py-5 rounded-3xl items-center justify-center"
-          >
-            <Text className="text-white text-2xl font-black">
-              Dalej ➔
-            </Text>
-          </JuicyButton>
+          <>
+            <Animated.View style={speakerAnimatedStyle}>
+              <JuicyButton
+                onPress={handlePronunciationCheck}
+                accessibilityLabel="Posłuchaj jeszcze raz"
+                className="py-3 px-5 rounded-2xl border-2 bg-[#1C2559] border-[#00F0FF] flex-row items-center justify-center gap-3"
+              >
+                <Text className="text-2xl">🔊</Text>
+                <Text className="text-white text-lg font-extrabold">
+                  Posłuchaj jeszcze raz
+                </Text>
+              </JuicyButton>
+            </Animated.View>
+
+            {playMode === "scored" ? (
+              <View className="flex-row gap-4">
+                {/* Minus Button (Incorrect) */}
+                <View className="flex-1">
+                  <JuicyButton
+                    onPress={() => handleSelfScore(false)}
+                    disabled={isTransitioning}
+                    accessibilityLabel="Odpowiedź błędna, brak punktu"
+                    className="bg-[#DC2626] border-4 border-red-300 py-5 rounded-3xl items-center justify-center"
+                  >
+                    <Text className="text-white text-5xl font-black leading-none">
+                      −
+                    </Text>
+                    <Text className="text-red-100 text-sm font-extrabold mt-1">
+                      Jeszcze nie
+                    </Text>
+                  </JuicyButton>
+                </View>
+
+                {/* Plus Button (Correct) */}
+                <View className="flex-1">
+                  <JuicyButton
+                    onPress={() => handleSelfScore(true)}
+                    disabled={isTransitioning}
+                    accessibilityLabel="Odpowiedź poprawna, dodaj punkt"
+                    className="bg-[#16A34A] border-4 border-green-300 py-5 rounded-3xl items-center justify-center"
+                  >
+                    <Text className="text-white text-5xl font-black leading-none">
+                      +
+                    </Text>
+                    <Text className="text-green-100 text-sm font-extrabold mt-1">
+                      Dobrze!
+                    </Text>
+                  </JuicyButton>
+                </View>
+              </View>
+            ) : (
+              <JuicyButton
+                onPress={handlePracticeNext}
+                disabled={isTransitioning}
+                accessibilityLabel="Następna karta"
+                className="bg-[#0284C7] border-4 border-[#00F0FF] py-5 rounded-3xl items-center justify-center"
+              >
+                <Text className="text-white text-2xl font-black">
+                  Dalej ➔
+                </Text>
+              </JuicyButton>
+            )}
+          </>
         )}
       </View>
     </SafeAreaView>
