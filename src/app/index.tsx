@@ -1,11 +1,13 @@
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { Text, View } from "react-native";
+import { Image, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { JuicyButton } from "@/components/juicy-button";
 import { PlayMode } from "@/data/challenges";
 import { stopSpeech } from "@/utils/audio";
+
+const RUMI_LOGO = require("../../assets/logo.png");
 
 export default function HomeScreen() {
   const [playMode, setPlayMode] = useState<PlayMode>("scored");
@@ -29,16 +31,25 @@ export default function HomeScreen() {
     <SafeAreaView className="flex-1 bg-[#120824] px-6 py-3 justify-between">
       <StatusBar style="light" />
 
-      {/* Header */}
-      <View className="items-center mt-1">
-        <View className="bg-[#241046] border-2 border-[#00F0FF] px-4 py-1 rounded-full mb-2">
-          <Text className="text-[#00F0FF] font-extrabold tracking-widest text-xs">
-            ★ HUNTR/X • RUMI ★
+      {/* Header with Rumi Logo */}
+      <View className="flex-row items-center justify-center gap-3.5 mt-1">
+        <View className="w-20 h-20 rounded-3xl border-2 border-[#00F0FF] overflow-hidden bg-[#120824]">
+          <Image
+            source={RUMI_LOGO}
+            style={{ width: "100%", height: "100%" }}
+            resizeMode="cover"
+          />
+        </View>
+        <View className="items-start">
+          <View className="bg-[#241046] border-2 border-[#00F0FF] px-3 py-0.5 rounded-full mb-1.5">
+            <Text className="text-[#00F0FF] font-extrabold tracking-widest text-xs">
+              ★ HUNTR/X • RUMI ★
+            </Text>
+          </View>
+          <Text className="text-white text-3xl font-black tracking-tight">
+            Cześć Laura! 💜
           </Text>
         </View>
-        <Text className="text-white text-3xl font-black tracking-tight text-center">
-          Cześć Laura! 💜
-        </Text>
       </View>
 
       {/* Play Mode Toggle (Na punkty vs Bez punktów vs Słownik) */}
