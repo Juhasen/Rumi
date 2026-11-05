@@ -1,19 +1,25 @@
 # Rumi
 
-Edukacyjna gra mobilna dla pięcioletniego dziecka (Laury) w stylistyce HUNTR/X do nauki alfabetu oraz kolorów poprzez zabawę głosową.
+Edukacyjna gra mobilna dla pięcioletniego dziecka (Laury) w stylistyce HUNTR/X do nauki polskiego alfabetu oraz angielskich nazw kolorów poprzez zabawę głosową.
 
 ## Language
 
 **Topic (Temat)**:
-Przedmiot nauki wybierany przez gracza: polski alfabet (`Alphabet`) lub kolory (`Colors` — pula 11 podstawowych kolorów: czerwony, niebieski, zielony, żółty, pomarańczowy, fioletowy, różowy, czarny, biały, brązowy, szary).
+Przedmiot nauki wybierany na ekranie głównym:
+- `Alphabet` (Alfabet): 32 litery polskiego alfabetu (`A a` – `Ż ż`) z polską wymową (`pl-PL`).
+- `Colors` (Kolory): 11 podstawowych kolorów (Red, Blue, Green, Yellow, Orange, Purple, Pink, Black, White, Brown, Gray) z angielską wymową (`en-US`).
 _Avoid_: Kategoria, moduł, level
 
 **Play Mode (Wariant rozgrywki)**:
-Sposób prowadzenia rozgrywki w wybranym temacie: rozgrywka punktowana (`Scored Mode`) lub swobodna nauka bez punktów (`Practice Mode`).
+Przełączany na ekranie głównym tryb zabawy:
+- `Scored Mode` (Gra na punkty): runda z licznikiem punktów, samooceną `+` / `-` i ekranem podsumowania.
+- `Practice Mode` (Swobodna nauka): nieskończone losowanie wyzwań bez punktów, z przyciskiem przejścia „Dalej” odblokowywanym po odsłuchaniu wymowy.
 _Avoid_: Tryb trudności, typ gry
 
 **Round (Runda)**:
-Sesja w trybie punktowanym (`Scored Mode`) składająca się z unikalnie wylosowanych wyzwań: 10 w temacie alfabetu (wygrana od 8/10) lub 5 w temacie kolorów.
+Sesja w trybie punktowanym (`Scored Mode`) składająca się z unikalnie wylosowanych wyzwań bez powtórzeń:
+- W temacie `Alphabet`: 10 wyzwań, wygrana od **8/10** punktów (80%).
+- W temacie `Colors`: 5 wyzwań, wygrana od **4/5** punktów (80%).
 _Avoid_: Gra, mecz, losowanie
 
 **Challenge (Wyzwanie)**:
@@ -21,9 +27,9 @@ Pojedyncza karta zadania prezentująca parę liter (wielka po lewej, mała po pr
 _Avoid_: Slajd, zagadka, item
 
 **Pronunciation Check (Sprawdzenie wymowy)**:
-Odsłuchanie poprawnej wymowy aktualnego wyzwania po naciśnięciu przycisku głośnika. W trybie punktowanym odblokowuje możliwość samooceny (`Self-Score`).
+Odsłuchanie poprawnej wymowy aktualnego wyzwania po naciśnięciu przycisku głośnika (`pl-PL` dla liter, `en-US` dla kolorów). Pierwsze odsłuchanie w danym wyzwaniu odblokowuje przyciski akcji (`+`/`-` lub „Dalej”) i w temacie kolorów odsłania angielski podpis.
 _Avoid_: Podpowiedź, lektor, audio
 
 **Self-Score (Samoocena)**:
-Dostępna po odsłuchaniu wymowy w trybie punktowanym decyzja gracza: zielony przycisk `+` (przyznaje punkt) lub czerwony przycisk `-` (brak punktu), przenosząca do kolejnego wyzwania.
+Dostępna po odsłuchaniu wymowy w trybie punktowanym decyzja gracza: zielony przycisk `+` (przyznaje 1 punkt) lub czerwony przycisk `-` (0 punktów), przenosząca do kolejnego wyzwania.
 _Avoid_: Walidacja, odpowiedź, głosowanie
