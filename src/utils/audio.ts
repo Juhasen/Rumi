@@ -50,6 +50,20 @@ const CHALLENGE_AUDIO_MAP: Record<string, AudioSource> = {
   white: require("../../assets/audio/en/white.wav"),
   brown: require("../../assets/audio/en/brown.wav"),
   gray: require("../../assets/audio/en/gray.wav"),
+
+  // English Animals (12 animals — Microsoft Zira en-US)
+  animal_dog: require("../../assets/audio/en/animal_dog.wav"),
+  animal_cat: require("../../assets/audio/en/animal_cat.wav"),
+  animal_lion: require("../../assets/audio/en/animal_lion.wav"),
+  animal_elephant: require("../../assets/audio/en/animal_elephant.wav"),
+  animal_monkey: require("../../assets/audio/en/animal_monkey.wav"),
+  animal_frog: require("../../assets/audio/en/animal_frog.wav"),
+  animal_tiger: require("../../assets/audio/en/animal_tiger.wav"),
+  animal_horse: require("../../assets/audio/en/animal_horse.wav"),
+  animal_pig: require("../../assets/audio/en/animal_pig.wav"),
+  animal_cow: require("../../assets/audio/en/animal_cow.wav"),
+  animal_rabbit: require("../../assets/audio/en/animal_rabbit.wav"),
+  animal_bear: require("../../assets/audio/en/animal_bear.wav"),
 };
 
 const SUMMARY_AUDIO = {

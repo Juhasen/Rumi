@@ -16,6 +16,7 @@ export default function RootLayout() {
         <Stack.Screen name="index" />
         <Stack.Screen name="alphabet" />
         <Stack.Screen name="colors" />
+        <Stack.Screen name="animals" />
         <Stack.Screen name="summary" />
       </Stack>
     </SafeAreaProvider>

@@ -1,6 +1,6 @@
 import { ImageSourcePropType } from "react-native";
 
-export type Topic = "alphabet" | "colors";
+export type Topic = "alphabet" | "colors" | "animals";
 export type PlayMode = "scored" | "practice";
 
 export interface AlphabetChallenge {
@@ -22,7 +22,17 @@ export interface ColorChallenge {
   spoken: string;
 }
 
-export type Challenge = AlphabetChallenge | ColorChallenge;
+export interface AnimalChallenge {
+  kind: "animals";
+  id: string;
+  nameEn: string;
+  namePl: string;
+  emoji: string;
+  image: ImageSourcePropType;
+  spoken: string;
+}
+
+export type Challenge = AlphabetChallenge | ColorChallenge | AnimalChallenge;
 
 export const ROUND_RULES: Record<
   Topic,
@@ -31,6 +41,7 @@ export const ROUND_RULES: Record<
   // shortcut: use ISO-639 "pl"/"en" without region hyphen because expo-speech Android uses Locale.Builder().setLanguage() which throws IllformedLocaleException on "pl-PL"
   alphabet: { roundLength: 10, winThreshold: 8, language: "pl" },
   colors: { roundLength: 5, winThreshold: 4, language: "en" },
+  animals: { roundLength: 5, winThreshold: 4, language: "en" },
 };
 
 export const ALPHABET_CHALLENGES: AlphabetChallenge[] = [
@@ -338,6 +349,123 @@ export const COLOR_CHALLENGES: ColorChallenge[] = [
   { kind: "colors", id: "gray", nameEn: "GRAY", namePl: "Szary", hex: "#6B7280", spoken: "Gray" },
 ];
 
+export const ANIMAL_CHALLENGES: AnimalChallenge[] = [
+  {
+    kind: "animals",
+    id: "animal_dog",
+    nameEn: "DOG",
+    namePl: "Pies",
+    emoji: "🐶",
+    image: require("../../assets/images/animals/animal_dog.png"),
+    spoken: "Dog",
+  },
+  {
+    kind: "animals",
+    id: "animal_cat",
+    nameEn: "CAT",
+    namePl: "Kot",
+    emoji: "🐱",
+    image: require("../../assets/images/animals/animal_cat.png"),
+    spoken: "Cat",
+  },
+  {
+    kind: "animals",
+    id: "animal_lion",
+    nameEn: "LION",
+    namePl: "Lew",
+    emoji: "🦁",
+    image: require("../../assets/images/animals/animal_lion.png"),
+    spoken: "Lion",
+  },
+  {
+    kind: "animals",
+    id: "animal_elephant",
+    nameEn: "ELEPHANT",
+    namePl: "Słoń",
+    emoji: "🐘",
+    image: require("../../assets/images/animals/animal_elephant.png"),
+    spoken: "Elephant",
+  },
+  {
+    kind: "animals",
+    id: "animal_monkey",
+    nameEn: "MONKEY",
+    namePl: "Małpka",
+    emoji: "🐵",
+    image: require("../../assets/images/animals/animal_monkey.png"),
+    spoken: "Monkey",
+  },
+  {
+    kind: "animals",
+    id: "animal_frog",
+    nameEn: "FROG",
+    namePl: "Żaba",
+    emoji: "🐸",
+    image: require("../../assets/images/animals/animal_frog.png"),
+    spoken: "Frog",
+  },
+  {
+    kind: "animals",
+    id: "animal_tiger",
+    nameEn: "TIGER",
+    namePl: "Tygrys",
+    emoji: "🐯",
+    image: require("../../assets/images/animals/animal_tiger.png"),
+    spoken: "Tiger",
+  },
+  {
+    kind: "animals",
+    id: "animal_horse",
+    nameEn: "HORSE",
+    namePl: "Koń",
+    emoji: "🐴",
+    image: require("../../assets/images/animals/animal_horse.png"),
+    spoken: "Horse",
+  },
+  {
+    kind: "animals",
+    id: "animal_pig",
+    nameEn: "PIG",
+    namePl: "Świnka",
+    emoji: "🐷",
+    image: require("../../assets/images/animals/animal_pig.png"),
+    spoken: "Pig",
+  },
+  {
+    kind: "animals",
+    id: "animal_cow",
+    nameEn: "COW",
+    namePl: "Krowa",
+    emoji: "🐮",
+    image: require("../../assets/images/animals/animal_cow.png"),
+    spoken: "Cow",
+  },
+  {
+    kind: "animals",
+    id: "animal_rabbit",
+    nameEn: "RABBIT",
+    namePl: "Królik",
+    emoji: "🐰",
+    image: require("../../assets/images/animals/animal_rabbit.png"),
+    spoken: "Rabbit",
+  },
+  {
+    kind: "animals",
+    id: "animal_bear",
+    nameEn: "BEAR",
+    namePl: "Niedźwiedź",
+    emoji: "🐻",
+    image: require("../../assets/images/animals/animal_bear.png"),
+    spoken: "Bear",
+  },
+];
+
+function getPoolForTopic(topic: Topic): readonly Challenge[] {
+  if (topic === "alphabet") return ALPHABET_CHALLENGES;
+  if (topic === "colors") return COLOR_CHALLENGES;
+  return ANIMAL_CHALLENGES;
+}
+
 export function shuffleChallenges<T>(items: readonly T[]): T[] {
   const copy = [...items];
   for (let i = copy.length - 1; i > 0; i--) {
@@ -348,8 +476,7 @@ export function shuffleChallenges<T>(items: readonly T[]): T[] {
 }
 
 export function drawRoundChallenges(topic: Topic): Challenge[] {
-  const pool: readonly Challenge[] =
-    topic === "alphabet" ? ALPHABET_CHALLENGES : COLOR_CHALLENGES;
+  const pool = getPoolForTopic(topic);
   const count = ROUND_RULES[topic].roundLength;
   return shuffleChallenges(pool).slice(0, count);
 }
@@ -358,8 +485,7 @@ export function drawNextPracticeChallenge(
   topic: Topic,
   currentId?: string
 ): Challenge {
-  const pool: readonly Challenge[] =
-    topic === "alphabet" ? ALPHABET_CHALLENGES : COLOR_CHALLENGES;
+  const pool = getPoolForTopic(topic);
   const candidates = pool.filter((item) => item.id !== currentId);
   return candidates[Math.floor(Math.random() * candidates.length)];
 }
@@ -372,12 +498,16 @@ export function isRoundWon(topic: Topic, score: number): boolean {
 if (
   ALPHABET_CHALLENGES.length !== 32 ||
   COLOR_CHALLENGES.length !== 11 ||
+  ANIMAL_CHALLENGES.length !== 12 ||
   drawRoundChallenges("alphabet").length !== 10 ||
   drawRoundChallenges("colors").length !== 5 ||
+  drawRoundChallenges("animals").length !== 5 ||
   !isRoundWon("alphabet", 8) ||
   isRoundWon("alphabet", 7) ||
   !isRoundWon("colors", 4) ||
-  isRoundWon("colors", 3)
+  isRoundWon("colors", 3) ||
+  !isRoundWon("animals", 4) ||
+  isRoundWon("animals", 3)
 ) {
   throw new Error("Domain invariant check failed in challenges.ts");
 }

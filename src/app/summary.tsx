@@ -8,13 +8,30 @@ import { JuicyButton } from "@/components/juicy-button";
 import { ROUND_RULES, Topic, isRoundWon } from "@/data/challenges";
 import { speakRoundSummary, stopSpeech } from "@/utils/audio";
 
+const TOPIC_LABELS: Record<Topic, string> = {
+  alphabet: "ALFABET POLSKI",
+  colors: "ANGIELSKIE KOLORY",
+  animals: "ANGIELSKIE ZWIERZĘTA",
+};
+
+const TOPIC_ROUTES: Record<Topic, "/alphabet" | "/colors" | "/animals"> = {
+  alphabet: "/alphabet",
+  colors: "/colors",
+  animals: "/animals",
+};
+
 export default function SummaryScreen() {
   const { topic: rawTopic, score: rawScore } = useLocalSearchParams<{
     topic?: string;
     score?: string;
   }>();
 
-  const topic: Topic = rawTopic === "colors" ? "colors" : "alphabet";
+  const topic: Topic =
+    rawTopic === "colors"
+      ? "colors"
+      : rawTopic === "animals"
+      ? "animals"
+      : "alphabet";
   const score = Number.parseInt(rawScore ?? "0", 10) || 0;
   const total = ROUND_RULES[topic].roundLength;
   const threshold = ROUND_RULES[topic].winThreshold;
@@ -30,7 +47,7 @@ export default function SummaryScreen() {
   const handleReplay = () => {
     stopSpeech();
     router.replace({
-      pathname: topic === "colors" ? "/colors" : "/alphabet",
+      pathname: TOPIC_ROUTES[topic],
       params: { mode: "scored" },
     });
   };
@@ -48,7 +65,7 @@ export default function SummaryScreen() {
       <View className="items-center mt-6">
         <View className="bg-[#241046] border-2 border-[#00F0FF] px-5 py-1.5 rounded-full mb-4">
           <Text className="text-[#00F0FF] font-extrabold text-xs tracking-widest">
-            {topic === "alphabet" ? "ALFABET POLSKI" : "ANGIELSKIE KOLORY"}
+            {TOPIC_LABELS[topic]}
           </Text>
         </View>
         <Text className="text-6xl mb-3">{won ? "🏆🌟" : "💪✨"}</Text>

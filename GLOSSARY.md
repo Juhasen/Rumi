@@ -1,13 +1,14 @@
 # Rumi
 
-Edukacyjna gra mobilna dla pięcioletniego dziecka (Laury) w stylistyce HUNTR/X do nauki polskiego alfabetu oraz angielskich nazw kolorów poprzez zabawę głosową.
+Edukacyjna gra mobilna dla pięcioletniego dziecka (Laury) w stylistyce HUNTR/X do nauki polskiego alfabetu oraz angielskich nazw kolorów i zwierząt poprzez zabawę głosową.
 
 ## Language
 
 **Topic (Temat)**:
 Przedmiot nauki wybierany na ekranie głównym:
-- `Alphabet` (Alfabet): 32 litery polskiego alfabetu (`A a` – `Ż ż`) z polską wymową (`pl-PL`).
+- `Alphabet` (Alfabet): 32 litery polskiego alfabetu (`A a` – `Ż ż`) z polską wymową fonetyczną (`pl-PL`).
 - `Colors` (Kolory): 11 podstawowych kolorów (Red, Blue, Green, Yellow, Orange, Purple, Pink, Black, White, Brown, Gray) z angielską wymową (`en-US`).
+- `Animals` (Zwierzęta): 12 zwierząt (Dog, Cat, Lion, Elephant, Monkey, Frog, Tiger, Horse, Pig, Cow, Rabbit, Bear) z ilustracją oraz angielską wymową (`en-US`).
 _Avoid_: Kategoria, moduł, level
 
 **Play Mode (Wariant rozgrywki)**:
@@ -20,6 +21,7 @@ _Avoid_: Tryb trudności, typ gry
 Sesja w trybie punktowanym (`Scored Mode`) składająca się z unikalnie wylosowanych wyzwań bez powtórzeń:
 - W temacie `Alphabet`: 10 wyzwań, wygrana od **8/10** punktów (80%).
 - W temacie `Colors`: 5 wyzwań, wygrana od **4/5** punktów (80%).
+- W temacie `Animals`: 5 wyzwań, wygrana od **4/5** punktów (80%).
 _Avoid_: Gra, mecz, losowanie
 
 **Challenge (Wyzwanie)**:
