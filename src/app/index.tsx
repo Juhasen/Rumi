@@ -92,7 +92,7 @@ export default function HomeScreen() {
         <JuicyButton
           onPress={startAlphabet}
           accessibilityLabel="Nauka polskiego alfabetu"
-          className="bg-[#231145] border-4 border-[#A855F7] rounded-3xl p-4 flex-row items-center justify-between"
+          className="w-full bg-[#231145] border-4 border-[#A855F7] rounded-3xl p-4 flex-row items-center justify-between"
         >
           <View className="flex-1 pr-3">
             <View className="bg-purple-900/80 self-start px-3 py-0.5 rounded-full mb-1.5 border border-purple-400/50">
@@ -105,8 +105,14 @@ export default function HomeScreen() {
               Duże i małe litery od A do Ż
             </Text>
           </View>
-          <View className="bg-[#3B1771] border-2 border-[#00F0FF] w-20 h-20 rounded-2xl items-center justify-center">
-            <Text className="text-[#00F0FF] text-3xl font-black">A a</Text>
+          <View className="bg-[#3B1771] border-2 border-[#00F0FF] w-20 h-20 rounded-2xl flex-row items-center justify-center px-1">
+            <Text
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              className="text-[#00F0FF] text-2xl font-black text-center"
+            >
+              A{"\u00A0"}a
+            </Text>
           </View>
         </JuicyButton>
 
@@ -114,7 +120,7 @@ export default function HomeScreen() {
         <JuicyButton
           onPress={startColors}
           accessibilityLabel="Nauka kolorów po angielsku"
-          className="bg-[#161B44] border-4 border-[#00F0FF] rounded-3xl p-4 flex-row items-center justify-between"
+          className="w-full bg-[#161B44] border-4 border-[#00F0FF] rounded-3xl p-4 flex-row items-center justify-between"
         >
           <View className="flex-1 pr-3">
             <View className="bg-sky-900/80 self-start px-3 py-0.5 rounded-full mb-1.5 border border-cyan-400/50">
@@ -136,7 +142,7 @@ export default function HomeScreen() {
         <JuicyButton
           onPress={startAnimals}
           accessibilityLabel="Nauka zwierząt po angielsku"
-          className="bg-[#2A103C] border-4 border-[#FF2A85] rounded-3xl p-4 flex-row items-center justify-between"
+          className="w-full bg-[#2A103C] border-4 border-[#FF2A85] rounded-3xl p-4 flex-row items-center justify-between"
         >
           <View className="flex-1 pr-3">
             <View className="bg-pink-900/80 self-start px-3 py-0.5 rounded-full mb-1.5 border border-pink-400/50">
