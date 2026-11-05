@@ -428,27 +428,37 @@ function RumiGame() {
           </View>
         </View>
 
-        {/* Actions */}
-        <View className="w-full gap-4 mb-2">
-          <JuicyButton
-            onPress={() => startSession(topic, "scored")}
-            accessibilityLabel="Zagraj jeszcze raz"
-            className="bg-[#9333EA] border-2 border-[#00F0FF] py-5 rounded-3xl items-center"
-          >
-            <Text className="text-white text-2xl font-black">
-              🔄 Zagraj jeszcze raz
-            </Text>
-          </JuicyButton>
+        {/* Actions — huge icons for 5-year-old Laura */}
+        <View className="w-full flex-row gap-5 mb-2">
+          <View className="flex-1">
+            <JuicyButton
+              onPress={returnToMenu}
+              accessibilityLabel="Wróć do domu"
+              className="bg-[#1F113B] border-4 border-purple-400 py-6 rounded-3xl items-center justify-center"
+            >
+              <Text
+                style={{ fontSize: 56, lineHeight: 68 }}
+                className="text-center"
+              >
+                🏠
+              </Text>
+            </JuicyButton>
+          </View>
 
-          <JuicyButton
-            onPress={returnToMenu}
-            accessibilityLabel="Wróć do menu"
-            className="bg-[#1F113B] border-2 border-purple-500 py-4 rounded-3xl items-center"
-          >
-            <Text className="text-purple-200 text-xl font-bold">
-              🏠 Wróć do menu
-            </Text>
-          </JuicyButton>
+          <View className="flex-1">
+            <JuicyButton
+              onPress={() => startSession(topic, "scored")}
+              accessibilityLabel="Zagraj od nowa"
+              className="bg-[#9333EA] border-4 border-[#00F0FF] py-6 rounded-3xl items-center justify-center"
+            >
+              <Text
+                style={{ fontSize: 56, lineHeight: 68 }}
+                className="text-center"
+              >
+                🔄
+              </Text>
+            </JuicyButton>
+          </View>
         </View>
       </SafeAreaView>
     );
@@ -465,10 +475,10 @@ function RumiGame() {
       <View className="flex-row items-center justify-between">
         <JuicyButton
           onPress={returnToMenu}
-          accessibilityLabel="Wróć do menu głównego"
-          className="bg-[#231242] border-2 border-purple-500/80 px-4 py-2.5 rounded-2xl flex-row items-center"
+          accessibilityLabel="Wróć do domu"
+          className="bg-[#231242] border-2 border-purple-400 px-4 py-2 rounded-2xl items-center justify-center"
         >
-          <Text className="text-white font-extrabold text-base">⬅ Menu</Text>
+          <Text style={{ fontSize: 28, lineHeight: 34 }}>🏠</Text>
         </JuicyButton>
 
         <View className="bg-[#1F103A] border border-purple-600/60 px-4 py-2 rounded-2xl">
