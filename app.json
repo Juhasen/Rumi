@@ -2,6 +2,7 @@
   "expo": {
     "name": "Rumi",
     "slug": "Rumi",
+    "scheme": "rumi",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -23,7 +24,8 @@
     },
     "plugins": [
       "expo-audio",
-      "expo-asset"
+      "expo-asset",
+      "expo-router"
     ]
   }
 }
