@@ -1,14 +1,20 @@
 import { useLocalSearchParams } from "expo-router";
 import React, { useState } from "react";
 import { Image, Text, View } from "react-native";
+import { CatalogShell } from "@/components/catalog-shell";
 import { ChallengeShell } from "@/components/challenge-shell";
 import { JuicyButton } from "@/components/juicy-button";
 import { PlayMode } from "@/data/challenges";
 
 export default function AlphabetScreen() {
   const { mode } = useLocalSearchParams<{ mode?: string }>();
-  const playMode: PlayMode = mode === "practice" ? "practice" : "scored";
   const [revealedHintId, setRevealedHintId] = useState<string | null>(null);
+
+  if (mode === "catalog") {
+    return <CatalogShell topic="alphabet" />;
+  }
+
+  const playMode: PlayMode = mode === "practice" ? "practice" : "scored";
 
   return (
     <ChallengeShell

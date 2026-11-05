@@ -41,13 +41,13 @@ export default function HomeScreen() {
         </Text>
       </View>
 
-      {/* Play Mode Toggle (Na punkty vs Swobodna nauka) */}
-      <View className="bg-[#1E0E3A] p-2 rounded-3xl border-2 border-purple-700/70 flex-row gap-2 my-2">
+      {/* Play Mode Toggle (Na punkty vs Bez punktów vs Słownik) */}
+      <View className="bg-[#1E0E3A] p-2 rounded-3xl border-2 border-purple-700/70 flex-row gap-1.5 my-2">
         <View className="flex-1">
           <JuicyButton
             onPress={() => setPlayMode("scored")}
             accessibilityLabel="Tryb gry na punkty"
-            className={`py-3 px-3 rounded-2xl items-center justify-center ${
+            className={`py-2.5 px-2 rounded-2xl items-center justify-center ${
               playMode === "scored"
                 ? "bg-[#9333EA] border-2 border-[#00F0FF]"
                 : "bg-transparent"
@@ -55,7 +55,9 @@ export default function HomeScreen() {
           >
             <Text className="text-2xl mb-0.5">🏆</Text>
             <Text
-              className={`font-extrabold text-sm ${
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              className={`font-extrabold text-xs ${
                 playMode === "scored" ? "text-white" : "text-purple-300"
               }`}
             >
@@ -68,7 +70,7 @@ export default function HomeScreen() {
           <JuicyButton
             onPress={() => setPlayMode("practice")}
             accessibilityLabel="Tryb swobodnej nauki bez punktów"
-            className={`py-3 px-3 rounded-2xl items-center justify-center ${
+            className={`py-2.5 px-2 rounded-2xl items-center justify-center ${
               playMode === "practice"
                 ? "bg-[#0284C7] border-2 border-[#00F0FF]"
                 : "bg-transparent"
@@ -76,11 +78,36 @@ export default function HomeScreen() {
           >
             <Text className="text-2xl mb-0.5">📖</Text>
             <Text
-              className={`font-extrabold text-sm ${
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              className={`font-extrabold text-xs ${
                 playMode === "practice" ? "text-white" : "text-purple-300"
               }`}
             >
               Bez punktów
+            </Text>
+          </JuicyButton>
+        </View>
+
+        <View className="flex-1">
+          <JuicyButton
+            onPress={() => setPlayMode("catalog")}
+            accessibilityLabel="Tryb słownika — lista wszystkich elementów do odsłuchania"
+            className={`py-2.5 px-2 rounded-2xl items-center justify-center ${
+              playMode === "catalog"
+                ? "bg-[#DB2777] border-2 border-[#00F0FF]"
+                : "bg-transparent"
+            }`}
+          >
+            <Text className="text-2xl mb-0.5">🔊</Text>
+            <Text
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              className={`font-extrabold text-xs ${
+                playMode === "catalog" ? "text-white" : "text-purple-300"
+              }`}
+            >
+              Słownik
             </Text>
           </JuicyButton>
         </View>
@@ -97,7 +124,12 @@ export default function HomeScreen() {
           <View className="flex-1 pr-3">
             <View className="bg-purple-900/80 self-start px-3 py-0.5 rounded-full mb-1.5 border border-purple-400/50">
               <Text className="text-purple-200 text-xs font-bold">
-                POLSKI • {playMode === "scored" ? "10 LITER" : "SWOBODNIE"}
+                POLSKI •{" "}
+                {playMode === "scored"
+                  ? "10 LITER"
+                  : playMode === "practice"
+                  ? "SWOBODNIE"
+                  : "LISTA 32"}
               </Text>
             </View>
             <Text className="text-white text-2xl font-black">Alfabet</Text>
@@ -125,7 +157,12 @@ export default function HomeScreen() {
           <View className="flex-1 pr-3">
             <View className="bg-sky-900/80 self-start px-3 py-0.5 rounded-full mb-1.5 border border-cyan-400/50">
               <Text className="text-cyan-200 text-xs font-bold">
-                ENGLISH • {playMode === "scored" ? "5 KOLORÓW" : "SWOBODNIE"}
+                ENGLISH •{" "}
+                {playMode === "scored"
+                  ? "5 KOLORÓW"
+                  : playMode === "practice"
+                  ? "SWOBODNIE"
+                  : "LISTA 11"}
               </Text>
             </View>
             <Text className="text-white text-2xl font-black">Kolory</Text>
@@ -147,7 +184,12 @@ export default function HomeScreen() {
           <View className="flex-1 pr-3">
             <View className="bg-pink-900/80 self-start px-3 py-0.5 rounded-full mb-1.5 border border-pink-400/50">
               <Text className="text-pink-200 text-xs font-bold">
-                ENGLISH • {playMode === "scored" ? "5 ZWIERZĄT" : "SWOBODNIE"}
+                ENGLISH •{" "}
+                {playMode === "scored"
+                  ? "5 ZWIERZĄT"
+                  : playMode === "practice"
+                  ? "SWOBODNIE"
+                  : "LISTA 12"}
               </Text>
             </View>
             <Text className="text-white text-2xl font-black">Zwierzęta</Text>
@@ -166,7 +208,9 @@ export default function HomeScreen() {
         <Text className="text-purple-400 text-xs font-semibold">
           {playMode === "scored"
             ? "Wygrana: 8/10 alfabet • 4/5 kolory i zwierzęta"
-            : "Tryb nauki: ćwicz we własnym tempie bez limitu"}
+            : playMode === "practice"
+            ? "Tryb nauki: ćwicz we własnym tempie bez limitu"
+            : "Słownik: kliknij dowolny wiersz, aby odsłuchać wymowę"}
         </Text>
       </View>
     </SafeAreaView>

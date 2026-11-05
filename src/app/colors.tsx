@@ -1,11 +1,17 @@
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
 import { Text, View } from "react-native";
+import { CatalogShell } from "@/components/catalog-shell";
 import { ChallengeShell } from "@/components/challenge-shell";
 import { PlayMode } from "@/data/challenges";
 
 export default function ColorsScreen() {
   const { mode } = useLocalSearchParams<{ mode?: string }>();
+
+  if (mode === "catalog") {
+    return <CatalogShell topic="colors" />;
+  }
+
   const playMode: PlayMode = mode === "practice" ? "practice" : "scored";
 
   return (

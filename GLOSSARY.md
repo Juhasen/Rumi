@@ -15,6 +15,7 @@ _Avoid_: Kategoria, moduł, level
 Przełączany na ekranie głównym tryb zabawy:
 - `Scored Mode` (Gra na punkty): runda z licznikiem punktów, samooceną `+` / `-` i ekranem podsumowania.
 - `Practice Mode` (Swobodna nauka): nieskończone losowanie wyzwań bez punktów, z przyciskiem przejścia „Dalej” odblokowywanym po odsłuchaniu wymowy.
+- `Catalog Mode` (Słownik / Lista): pełna lista wszystkich elementów w wybranym temacie; dotknięcie dowolnego wiersza natychmiast odtwarza jego wymowę.
 _Avoid_: Tryb trudności, typ gry
 
 **Round (Runda)**:

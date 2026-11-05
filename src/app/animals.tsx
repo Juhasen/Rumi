@@ -1,11 +1,17 @@
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
 import { Image, Text, View } from "react-native";
+import { CatalogShell } from "@/components/catalog-shell";
 import { ChallengeShell } from "@/components/challenge-shell";
 import { PlayMode } from "@/data/challenges";
 
 export default function AnimalsScreen() {
   const { mode } = useLocalSearchParams<{ mode?: string }>();
+
+  if (mode === "catalog") {
+    return <CatalogShell topic="animals" />;
+  }
+
   const playMode: PlayMode = mode === "practice" ? "practice" : "scored";
 
   return (

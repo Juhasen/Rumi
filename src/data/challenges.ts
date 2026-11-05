@@ -1,7 +1,7 @@
 import { ImageSourcePropType } from "react-native";
 
 export type Topic = "alphabet" | "colors" | "animals";
-export type PlayMode = "scored" | "practice";
+export type PlayMode = "scored" | "practice" | "catalog";
 
 export interface AlphabetChallenge {
   kind: "alphabet";
@@ -460,7 +460,7 @@ export const ANIMAL_CHALLENGES: AnimalChallenge[] = [
   },
 ];
 
-function getPoolForTopic(topic: Topic): readonly Challenge[] {
+export function getPoolForTopic(topic: Topic): readonly Challenge[] {
   if (topic === "alphabet") return ALPHABET_CHALLENGES;
   if (topic === "colors") return COLOR_CHALLENGES;
   return ANIMAL_CHALLENGES;
