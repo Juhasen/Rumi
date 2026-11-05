@@ -33,10 +33,10 @@ export default function HomeScreen() {
 
       {/* Header with Rumi Logo */}
       <View className="flex-row items-center justify-center gap-3.5 mt-1">
-        <View className="w-20 h-20 rounded-3xl border-2 border-[#00F0FF] overflow-hidden bg-[#120824]">
+        <View className="w-20 h-20 rounded-3xl border-2 border-[#00F0FF] overflow-hidden bg-[#120824] items-center justify-center">
           <Image
             source={RUMI_LOGO}
-            style={{ width: "100%", height: "100%" }}
+            style={{ width: 76, height: 76, borderRadius: 20 }}
             resizeMode="cover"
           />
         </View>
